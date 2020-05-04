@@ -1,22 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const data = require('../data/data');
+const { Pool, Client } = require('pg');
 
-
-const p = path.join(
-    path.dirname(process.mainModule.filename),
-    'data',
-    'people.json'
-);
-
-const getPeopleFromFile = cb => {
-    fs.readFile(p, (err, fileContent) => {
-        if (err) {
-            cb([]);
-        } else {
-            cb(JSON.parse(fileContent));
-        };
-    });
-};
+const pool = new Pool({
+    user: data.user,
+    host: data.host,
+    database: data.database,
+    password: data.password,
+    port: data.port,
+})
 
 module.exports = class People {
     constructor(id, name) {
@@ -24,18 +17,23 @@ module.exports = class People {
         this.name = name;
     }
     save() {
-        getPeopleFromFile(people => {
-            this.id = Math.random().toString();
-            people.push(this);
-            fs.writeFile(p, JSON.stringify(people), err => {
-                console.log(err);
-            });
-        }
-        )
+        const value = [this.name]
+        return pool.query(
+            'INSERT INTO name (name) VALUES ($1)',
+            value)
+
     };
-    static fetchAll(cb) {
-        getPeopleFromFile(cb);
-    };
+    static async fetchAll() {
+        return await pool.query('SELECT * FROM name');
+    }
+
+    static findById(id) {
+        return pool.query(`SELECT * FROM name WHERE id = '${id}'`);
+    }
+
+    static async deletePerson(id){
+        return await pool.query(`DELETE FROM name WHERE id = '${id}'`)
+    }
 }
 
 

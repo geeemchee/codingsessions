@@ -14,15 +14,20 @@
         </form>
 
         <% if (ppl.length > 0) { %>
-        <div class="grid">
-            <% for (let people of ppl) { %>
-            <h1>
-                <%= people.name %>
-            </h1>
+        <div>
+            <% ppl.forEach(p => { %>
+
+            <h1><%= p.name %></h1>
+            <form action="/delete-people" method="POST">
+                <input type="hidden" value="<%= p.id %>" name="name">
+                <button class="btn danger" type="submit">Delete</button>
+            </form>
+
+            <% }) %>
+
+            <% } else { %>
+            <h1>No people Found!</h1>
             <% } %>
         </div>
-        <% } else { %>
-        <h1>No people Found!</h1>
-        <% } %>
     </main>
     <%- include('../includes/end.ejs') %>

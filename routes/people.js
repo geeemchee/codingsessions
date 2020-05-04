@@ -12,5 +12,6 @@ router.get('/people', peopleController.getPeople);
 
 router.post('/people', peopleController.postAddPeople);
 
+router.post('/delete-people', peopleController.deletePeople);
 
 module.exports = router;
