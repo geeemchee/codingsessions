@@ -1,0 +1,17 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/public/css/forms.css">
+<link rel="stylesheet" href="/public/css/product.css">
+</head>
+
+<body>
+    <main>
+        <form class="product-form" action="/edit-people" method="POST">
+            <div class="form-control">
+                <label for="title">Edit Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <button class="btn" type="submit">submit</button>
+        </form>
+
+    </main>
+    <%- include('../includes/end.ejs') %>

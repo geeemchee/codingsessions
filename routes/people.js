@@ -10,8 +10,9 @@ const router = express.Router();
 
 router.get('/people', peopleController.getPeople);
 
-router.post('/people', peopleController.postAddPeople);
+router.post('/add-people', peopleController.postAddPeople);
 
 router.post('/delete-people', peopleController.deletePeople);
+
 
 module.exports = router;

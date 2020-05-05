@@ -5,10 +5,10 @@
 
 <body>
     <main>
-        <form class="product-form" action="/people" method="POST">
+        <form class="product-form" action="/add-people" method="POST">
             <div class="form-control">
                 <label for="title">Name List</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name">
             </div>
             <button class="btn" type="submit">Add name</button>
         </form>
@@ -22,7 +22,7 @@
                 <input type="hidden" value="<%= p.id %>" name="name">
                 <button class="btn danger" type="submit">Delete</button>
             </form>
-
+            
             <% }) %>
 
             <% } else { %>

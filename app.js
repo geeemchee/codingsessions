@@ -13,9 +13,9 @@ const peopleRoutes = require('./routes/people');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req,res,next){setTimeout(next,500)});
 
 app.use('/hello', helloRoutes);
 app.use(peopleRoutes);
-
 
 app.listen(3000);

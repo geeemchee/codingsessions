@@ -34,3 +34,4 @@ exports.deletePeople = (req, res, next) => {
     .catch(error => {return error});
   res.redirect('/people');
 }
+
